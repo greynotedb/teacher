@@ -238,7 +238,7 @@ const Home: FC<HomeProps> = ({}) => {
           backgroundPosition="bottom right"
           backgroundColor={"#fff"}
         >
-          <Flex gap={2} width={"full"} my="5px">
+          <Flex gap={2} width={"full"} my="5px" display={{base:'column', lg:'flex'}}>
             <Box
               border={"1px solid #D8D8D8"}
               rounded={"md"}
@@ -267,6 +267,7 @@ const Home: FC<HomeProps> = ({}) => {
               justifyContent={"center"}
               flexDir={"column"}
               alignItems={"center"}
+              my={{base:'0', md:'0.5rem'}}
             >
               <Text fontSize={"xl"} fontWeight={"bold"}>
                 32
@@ -280,9 +281,11 @@ const Home: FC<HomeProps> = ({}) => {
               rounded={"md"}
               p={"0.4rem"}
               display={"flex"}
+              justifyContent={'center'}
               alignItems={"center"}
+              my={{base:'0', md:'0.5rem'}}
             >
-              <Text fontWeight={"bold"} fontSize={"xl"}>
+              <Text fontWeight={"bold"} fontSize={"xl"} textAlign={'center'}>
                 27/08/2023
               </Text>
             </Box>
@@ -292,6 +295,8 @@ const Home: FC<HomeProps> = ({}) => {
               p={"0.4rem"}
               display={"flex"}
               alignItems={"center"}
+              justifyContent={'center'}
+              my={{base:'0', md:'0.5rem'}}
             >
               <Text fontWeight={"bold"} fontSize={"xl"}>
                 15:25
@@ -299,7 +304,7 @@ const Home: FC<HomeProps> = ({}) => {
             </Box>
           </Flex>
 
-          <Flex gap={5} width={"full"} my={"5px"}>
+          <Box gap={5} display={'flex'} flexDirection={{ base:'column', lg:'row' }} width={"full"} my={"5px"}>
             <Flex
               alignItems={"center"}
               gap={3}
@@ -341,10 +346,10 @@ const Home: FC<HomeProps> = ({}) => {
               </Box>
               <Text>Upload Attendance</Text>
             </Flex>
-          </Flex>
+          </Box>
         </Box>
 
-        <Flex mt={"2rem"} gap={8} w={'full'}>
+        <Box mt={"2rem"} gap={8} w={'full'} display={'flex'} flexDir={{base:'column', xl:'row'}}>
           {/* Attendace section */}
           <Box p={"1rem"} backgroundColor={"#fff"} rounded={"lg"} w={'full'}>
             <Flex justifyContent={"space-between"}>
@@ -423,7 +428,7 @@ const Home: FC<HomeProps> = ({}) => {
               </Grid>
             </Box>
           </Box>
-        </Flex>
+        </Box>
       </Box>
 
       <Box backgroundColor={"#F1F1F1"} height={"full"}>
@@ -458,7 +463,7 @@ const Home: FC<HomeProps> = ({}) => {
                 <Grid
                   justifyContent={"center"}
                   alignContent={"space-between"}
-                  w={{ base: "full", md: "15rem" }}
+                  // w={{ base: "full", md: "15rem" }}
                 >
                   <Text fontSize={"sm"} fontWeight={"bold"}>
                     Graycases
@@ -503,7 +508,7 @@ const Home: FC<HomeProps> = ({}) => {
                 <Grid
                   justifyContent={"center"}
                   alignContent={"space-between"}
-                  w={{ base: "full", md: "15rem" }}
+                  // w={{ base: "full", md: "15rem" }}
                 >
                   <Text fontSize={"sm"} fontWeight={"bold"}>
                     Results
@@ -548,7 +553,7 @@ const Home: FC<HomeProps> = ({}) => {
                 <Grid
                   justifyContent={"center"}
                   alignContent={"space-between"}
-                  w={{ base: "full", md: "15rem" }}
+                  // w={{ base: "full", md: "15rem" }}
                 >
                   <Text fontSize={"sm"} fontWeight={"bold"}>
                     Notes
@@ -580,8 +585,8 @@ const Home: FC<HomeProps> = ({}) => {
           </Box>
         </Box>
 
-        <Box>
-          <Box border={"1px solid #D8D8D8"} py={"2rem"} px={"1.5rem"}>
+        <Box h={'full'}>
+          <Box border={"1px solid #D8D8D8"} py={"2rem"} px={"1.5rem"} h={'full'}>
             <Text fontWeight={"bold"}>Recent Actions</Text>
 
             <Box>
