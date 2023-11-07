@@ -18,7 +18,7 @@ import { GoPersonAdd } from "react-icons/go";
 import { BsArchive, BsDot, BsDashCircle } from "react-icons/bs";
 import { PrimaryBadge } from "@/components/shared/Badge";
 import { SecondaryBadge } from "@/components/shared/Badge";
-import {MdDateRange} from 'react-icons/md'
+import { MdDateRange } from "react-icons/md";
 
 interface HomeProps {
   attendance: [
@@ -46,8 +46,8 @@ interface StudentAttendanceProps {
   };
 }
 
-interface BirthdayCardProps{
-  birthday:{
+interface BirthdayCardProps {
+  birthday: {
     id: number;
     date: string;
     profileUrl: string;
@@ -55,7 +55,7 @@ interface BirthdayCardProps{
     regNo: string;
     gender: string;
     age: number;
-  }
+  };
 }
 const StudentAttendance: FC<StudentAttendanceProps> = ({ attendance }) => {
   return (
@@ -87,75 +87,89 @@ const StudentAttendance: FC<StudentAttendanceProps> = ({ attendance }) => {
 };
 
 const BirthdayCard: FC<BirthdayCardProps> = ({ birthday }) => {
-  return(
-    <Grid border={'1px solid #E2E2E2'} rounded={'md'} textAlign={'center'} justifyContent={'center'} alignItems={'center'} w={'full'} p={'1rem'}>
-      <Avatar src={birthday.profileUrl} justifySelf={'center'}/>
-      <Text fontSize={'sm'} fontWeight={'bold'}>{birthday.name}</Text>
+  return (
+    <Grid
+      border={"1px solid #E2E2E2"}
+      rounded={"md"}
+      textAlign={"center"}
+      justifyContent={"center"}
+      alignItems={"center"}
+      w={"full"}
+      p={"1rem"}
+    >
+      <Avatar src={birthday.profileUrl} justifySelf={"center"} />
+      <Text fontSize={"sm"} fontWeight={"bold"}>
+        {birthday.name}
+      </Text>
       <Box>
-          <Flex alignItems={"flex-end"}>
-            <Text color={"#747474"} fontSize={"2xs"}>
-              {birthday.regNo}
-            </Text>
-            <Icon as={BsDot} color={"#747474"} />
-            <Text color={"#747474"} fontSize={"2xs"}>
-              {birthday.gender}
-            </Text>
-            <Icon as={BsDot} color={"#747474"} />
-            <Text color={"#747474"} fontSize={"2xs"}>
-              {birthday.age} Years
-            </Text>
-          </Flex>
-        <Text fontWeight={'bold'}>{birthday.date}</Text>
-        </Box>
+        <Flex alignItems={"flex-end"}>
+          <Text color={"#747474"} fontSize={"0.5rem"}>
+            {birthday.regNo}
+          </Text>
+          <Icon as={BsDot} color={"#747474"} />
+          <Text color={"#747474"} fontSize={"0.5rem"}>
+            {birthday.gender}
+          </Text>
+          <Icon as={BsDot} color={"#747474"} />
+          <Text color={"#747474"} fontSize={"0.5rem"}>
+            {birthday.age} Years
+          </Text>
+        </Flex>
+        <Text fontWeight={"bold"}>{birthday.date}</Text>
+      </Box>
     </Grid>
-  )
-}
+  );
+};
 
 const Home: FC<HomeProps> = ({}) => {
   const birthday = [
     {
       id: 1,
-      date: '27/08/2023',
-      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      date: "27/08/2023",
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Micheal (Adewale) Adebowale",
-      regNo: 'GN0230123',
-      gender: 'Male',
+      regNo: "GN0230123",
+      gender: "Male",
       age: 11,
     },
     {
       id: 2,
-      date: '27/08/2023',
-      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      date: "27/08/2023",
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Micheal (Adewale) Adebowale",
-      regNo: 'GN0230123',
-      gender: 'Male',
+      regNo: "GN0230123",
+      gender: "Male",
       age: 11,
     },
     {
       id: 3,
-      date: '27/08/2023',
-      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      date: "27/08/2023",
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Micheal (Adewale) Adebowale",
-      regNo: 'GN0230123',
-      gender: 'Male',
+      regNo: "GN0230123",
+      gender: "Male",
       age: 11,
     },
     {
-      id:4,
-      date: '27/08/2023',
-      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      id: 4,
+      date: "27/08/2023",
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Micheal (Adewale) Adebowale",
-      regNo: 'GN0230123',
-      gender: 'Male',
+      regNo: "GN0230123",
+      gender: "Male",
       age: 11,
     },
-  ]
+  ];
 
   const attendance = [
     {
       id: 1,
       profileUrl:
-      "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Ajayi Samuel",
       regNo: "GN0230030",
       gender: "Male",
@@ -165,7 +179,7 @@ const Home: FC<HomeProps> = ({}) => {
     {
       id: 2,
       profileUrl:
-      "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Ajayi Samuel",
       regNo: "GN0230030",
       gender: "Male",
@@ -173,7 +187,7 @@ const Home: FC<HomeProps> = ({}) => {
       present: false,
     },
     {
-      id:3,
+      id: 3,
       profileUrl:
         "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
       name: "Ajayi Samuel",
@@ -238,7 +252,12 @@ const Home: FC<HomeProps> = ({}) => {
           backgroundPosition="bottom right"
           backgroundColor={"#fff"}
         >
-          <Flex gap={2} width={"full"} my="5px" display={{base:'column', lg:'flex'}}>
+          <Flex
+            gap={2}
+            width={"full"}
+            my="5px"
+            display={{ base: "column", lg: "flex" }}
+          >
             <Box
               border={"1px solid #D8D8D8"}
               rounded={"md"}
@@ -267,7 +286,7 @@ const Home: FC<HomeProps> = ({}) => {
               justifyContent={"center"}
               flexDir={"column"}
               alignItems={"center"}
-              my={{base:'0', md:'0.5rem'}}
+              my={{ base: "0", md: "0.5rem" }}
             >
               <Text fontSize={"xl"} fontWeight={"bold"}>
                 32
@@ -281,11 +300,11 @@ const Home: FC<HomeProps> = ({}) => {
               rounded={"md"}
               p={"0.4rem"}
               display={"flex"}
-              justifyContent={'center'}
+              justifyContent={"center"}
               alignItems={"center"}
-              my={{base:'0', md:'0.5rem'}}
+              my={{ base: "0", md: "0.5rem" }}
             >
-              <Text fontWeight={"bold"} fontSize={"xl"} textAlign={'center'}>
+              <Text fontWeight={"bold"} fontSize={"xl"} textAlign={"center"}>
                 27/08/2023
               </Text>
             </Box>
@@ -295,8 +314,8 @@ const Home: FC<HomeProps> = ({}) => {
               p={"0.4rem"}
               display={"flex"}
               alignItems={"center"}
-              justifyContent={'center'}
-              my={{base:'0', md:'0.5rem'}}
+              justifyContent={"center"}
+              my={{ base: "0", md: "0.5rem" }}
             >
               <Text fontWeight={"bold"} fontSize={"xl"}>
                 15:25
@@ -304,7 +323,13 @@ const Home: FC<HomeProps> = ({}) => {
             </Box>
           </Flex>
 
-          <Box gap={5} display={'flex'} flexDirection={{ base:'column', lg:'row' }} width={"full"} my={"5px"}>
+          <Box
+            gap={5}
+            display={"flex"}
+            flexDirection={{ base: "column", lg: "row" }}
+            width={"full"}
+            my={"5px"}
+          >
             <Flex
               alignItems={"center"}
               gap={3}
@@ -349,9 +374,15 @@ const Home: FC<HomeProps> = ({}) => {
           </Box>
         </Box>
 
-        <Box mt={"2rem"} gap={8} w={'full'} display={'flex'} flexDir={{base:'column', xl:'row'}}>
+        <Box
+          mt={"2rem"}
+          gap={8}
+          w={"full"}
+          display={"flex"}
+          flexDir={{ base: "column", xl: "row" }}
+        >
           {/* Attendace section */}
-          <Box p={"1rem"} backgroundColor={"#fff"} rounded={"lg"} w={'full'}>
+          <Box p={"1rem"} backgroundColor={"#fff"} rounded={"lg"} w={"full"}>
             <Flex justifyContent={"space-between"}>
               <Box display={"flex"} alignItems={"center"} gap={2}>
                 <Icon as={BsArchive} boxSize={"4"} color={"#E4B972"} />
@@ -386,11 +417,11 @@ const Home: FC<HomeProps> = ({}) => {
               )}
             </Box>
 
-            <Divider size={'10'}/>
+            <Divider size={"10"} />
 
             {/* Section for present pupils */}
             <Box>
-              <Text fontSize={"sm"} color={"#747474"} mt={'1rem'}>
+              <Text fontSize={"sm"} color={"#747474"} mt={"1rem"}>
                 Present
               </Text>
 
@@ -404,27 +435,30 @@ const Home: FC<HomeProps> = ({}) => {
 
           {/* Events section */}
           <Box p={"1rem"} backgroundColor={"#fff"} rounded={"lg"} w={"full"}>
-              <Box display={"flex"} alignItems={"center"} gap={2}>
-                <Icon as={MdDateRange} boxSize={"4"} color={"#E4B972"} />
-                <Text fontWeight={"600"} fontSize={"md"}>
-                  Events
-                </Text>
-              </Box>
+            <Box display={"flex"} alignItems={"center"} gap={2}>
+              <Icon as={MdDateRange} boxSize={"4"} color={"#E4B972"} />
+              <Text fontWeight={"600"} fontSize={"md"}>
+                Events
+              </Text>
+            </Box>
 
-               <Divider color={"#E2E2E2"} my={"0.8rem"} />
+            <Divider color={"#E2E2E2"} my={"0.8rem"} />
 
             <Box>
               <Text fontSize={"sm"} color={"#747474"}>
                 Birthdays this week
               </Text>
-              <Grid templateColumns={{base:'repeat(1, 1fr)', xl:"repeat(2, 1fr)"}} gap={4} mt={'0.5rem'}>
-              {
-                birthday.map((item) => {
-                  return(
-                    <BirthdayCard birthday={item} key={item.id}/>
-                  )
-                })
-              }
+              <Grid
+                templateColumns={{
+                  base: "repeat(1, 1fr)",
+                  xl: "repeat(2, 1fr)",
+                }}
+                gap={4}
+                mt={"0.5rem"}
+              >
+                {birthday.map((item) => {
+                  return <BirthdayCard birthday={item} key={item.id} />;
+                })}
               </Grid>
             </Box>
           </Box>
@@ -585,8 +619,13 @@ const Home: FC<HomeProps> = ({}) => {
           </Box>
         </Box>
 
-        <Box h={'full'}>
-          <Box border={"1px solid #D8D8D8"} py={"2rem"} px={"1.5rem"} h={'full'}>
+        <Box h={"full"}>
+          <Box
+            border={"1px solid #D8D8D8"}
+            py={"2rem"}
+            px={"1.5rem"}
+            h={"full"}
+          >
             <Text fontWeight={"bold"}>Recent Actions</Text>
 
             <Box>
@@ -595,7 +634,7 @@ const Home: FC<HomeProps> = ({}) => {
                 border={"1px solid #E2E2E2"}
                 p={"0.5rem"}
                 gap={1}
-                rounded={'lg'}
+                rounded={"lg"}
               >
                 <Avatar src="https://th.bing.com/th/id/R.ff77632115719e1d1c6acaa1d54745a9?rik=Tlt8JV3P6lD0Dw&pid=ImgRaw&r=0" />
                 <Box w={"full"}>
@@ -650,7 +689,7 @@ const Home: FC<HomeProps> = ({}) => {
                 border={"1px solid #E2E2E2"}
                 p={"0.5rem"}
                 gap={1}
-                rounded={'lg'}
+                rounded={"lg"}
               >
                 <Avatar src="https://images.pexels.com/photos/1858479/pexels-photo-1858479.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" />
                 <Box w={"full"}>
@@ -705,7 +744,7 @@ const Home: FC<HomeProps> = ({}) => {
                 border={"1px solid #E2E2E2"}
                 p={"0.5rem"}
                 gap={1}
-                rounded={'lg'}
+                rounded={"lg"}
               >
                 <Avatar src="https://daisybeattyphotography.com/wp-content/uploads/2016/10/31-3037-post/best-child-portrait-studio-nyc-daisy-beatty-684x1024.jpg" />
                 <Box w={"full"}>
