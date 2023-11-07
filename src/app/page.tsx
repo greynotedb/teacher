@@ -1,95 +1,760 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import { FC } from "react";
+import {
+  Box,
+  Flex,
+  Text,
+  Button,
+  Icon,
+  Grid,
+  Avatar,
+  Divider,
+} from "@chakra-ui/react";
+import { HiOutlineDocumentText } from "react-icons/hi";
+import { AiOutlinePlus } from "react-icons/ai";
+import { CgFileDocument, CgFileAdd } from "react-icons/cg";
+import { GoPersonAdd } from "react-icons/go";
+import { BsArchive, BsDot, BsDashCircle } from "react-icons/bs";
+import { PrimaryBadge } from "@/components/shared/Badge";
+import { SecondaryBadge } from "@/components/shared/Badge";
+import {MdDateRange} from 'react-icons/md'
+
+interface HomeProps {
+  attendance: [
+    {
+      id: number;
+      profileUrl: string;
+      name: string;
+      regNo: string;
+      gender: string;
+      age: number;
+      present: boolean;
+    }
+  ];
+}
+
+interface StudentAttendanceProps {
+  attendance: {
+    id: number;
+    profileUrl: string;
+    name: string;
+    regNo: string;
+    gender: string;
+    age: number;
+    present: boolean;
+  };
+}
+
+interface BirthdayCardProps{
+  birthday:{
+    id: number;
+    date: string;
+    profileUrl: string;
+    name: string;
+    regNo: string;
+    gender: string;
+    age: number;
+  }
+}
+const StudentAttendance: FC<StudentAttendanceProps> = ({ attendance }) => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Flex justifyContent={"space-between"} my={"1rem"}>
+      <Box display={"flex"} alignItems={"center"} gap={2}>
+        <Avatar size={"sm"} src={attendance.profileUrl} />
+        <Box>
+          <Text fontSize={"sm"} fontWeight={"500"}>
+            {attendance.name}
+          </Text>
+          <Flex alignItems={"flex-end"}>
+            <Text color={"#747474"} fontSize={"2xs"}>
+              {attendance.regNo}
+            </Text>
+            <Icon as={BsDot} color={"#747474"} />
+            <Text color={"#747474"} fontSize={"2xs"}>
+              {attendance.gender}
+            </Text>
+            <Icon as={BsDot} color={"#747474"} />
+            <Text color={"#747474"} fontSize={"2xs"}>
+              {attendance.age} Years
+            </Text>
+          </Flex>
+        </Box>
+      </Box>
+      {attendance.present ? <PrimaryBadge /> : <SecondaryBadge />}
+    </Flex>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+const BirthdayCard: FC<BirthdayCardProps> = ({ birthday }) => {
+  return(
+    <Grid border={'1px solid #E2E2E2'} rounded={'md'} textAlign={'center'} justifyContent={'center'} alignItems={'center'} w={'full'} p={'1rem'}>
+      <Avatar src={birthday.profileUrl} justifySelf={'center'}/>
+      <Text fontSize={'sm'} fontWeight={'bold'}>{birthday.name}</Text>
+      <Box>
+          <Flex alignItems={"flex-end"}>
+            <Text color={"#747474"} fontSize={"2xs"}>
+              {birthday.regNo}
+            </Text>
+            <Icon as={BsDot} color={"#747474"} />
+            <Text color={"#747474"} fontSize={"2xs"}>
+              {birthday.gender}
+            </Text>
+            <Icon as={BsDot} color={"#747474"} />
+            <Text color={"#747474"} fontSize={"2xs"}>
+              {birthday.age} Years
+            </Text>
+          </Flex>
+        <Text fontWeight={'bold'}>{birthday.date}</Text>
+        </Box>
+    </Grid>
   )
 }
+
+const Home: FC<HomeProps> = ({}) => {
+  const birthday = [
+    {
+      id: 1,
+      date: '27/08/2023',
+      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      name: "Micheal (Adewale) Adebowale",
+      regNo: 'GN0230123',
+      gender: 'Male',
+      age: 11,
+    },
+    {
+      id: 2,
+      date: '27/08/2023',
+      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      name: "Micheal (Adewale) Adebowale",
+      regNo: 'GN0230123',
+      gender: 'Male',
+      age: 11,
+    },
+    {
+      id: 3,
+      date: '27/08/2023',
+      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      name: "Micheal (Adewale) Adebowale",
+      regNo: 'GN0230123',
+      gender: 'Male',
+      age: 11,
+    },
+    {
+      id:4,
+      date: '27/08/2023',
+      profileUrl: 'https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1',
+      name: "Micheal (Adewale) Adebowale",
+      regNo: 'GN0230123',
+      gender: 'Male',
+      age: 11,
+    },
+  ]
+
+  const attendance = [
+    {
+      id: 1,
+      profileUrl:
+      "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: false,
+    },
+    {
+      id: 2,
+      profileUrl:
+      "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: false,
+    },
+    {
+      id:3,
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: true,
+    },
+    {
+      id: 4,
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: true,
+    },
+    {
+      id: 5,
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: true,
+    },
+    {
+      id: 6,
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: true,
+    },
+    {
+      id: 7,
+      profileUrl:
+        "https://th.bing.com/th/id/OIP.R1WC47OEbMS_UFtDf7s22AHaI_?pid=ImgDet&rs=1",
+      name: "Ajayi Samuel",
+      regNo: "GN0230030",
+      gender: "Male",
+      age: 9,
+      present: true,
+    },
+  ];
+  return (
+    <Flex w={"full"} h={"full"} display={"flex"}>
+      <Box backgroundColor={"#FFF5E6"} height={"full"} width={"full"} p={5}>
+        <Box
+          bgImage={"/images/bgImg.png"}
+          p={"0.8rem"}
+          rounded={"lg"}
+          display={"flex"}
+          flexDir={"column"}
+          gap={{ base: 10, md: 20 }}
+          backgroundRepeat="no-repeat"
+          backgroundSize={"contain"}
+          backgroundPosition="bottom right"
+          backgroundColor={"#fff"}
+        >
+          <Flex gap={2} width={"full"} my="5px">
+            <Box
+              border={"1px solid #D8D8D8"}
+              rounded={"md"}
+              p={"0.4rem"}
+              display={"flex"}
+              gap={2}
+            >
+              <Box border={"1px solid #D8D8D8"} rounded={"md"} p={"0.4rem"}>
+                <Avatar src="https://th.bing.com/th/id/R.93210846f887818829a3eca4c7374fd1?rik=JwoqH6qfvHIDnA&pid=ImgRaw&r=0" />
+              </Box>
+              <Box>
+                <Text fontWeight={"bold"} fontSize={"sm"}>
+                  Greenfield High School
+                </Text>
+                <Text color={"#747474"} fontSize={"sm"}>
+                  Grade 6
+                </Text>
+              </Box>
+            </Box>
+            <Box
+              textAlign={"center"}
+              border={"1px solid #D8D8D8"}
+              rounded={"md"}
+              p={"0.4rem"}
+              display={"flex"}
+              justifyContent={"center"}
+              flexDir={"column"}
+              alignItems={"center"}
+            >
+              <Text fontSize={"xl"} fontWeight={"bold"}>
+                32
+              </Text>
+              <Text fontSize={"xs"} fontWeight={"500"}>
+                Students
+              </Text>
+            </Box>
+            <Box
+              border={"1px solid #D8D8D8"}
+              rounded={"md"}
+              p={"0.4rem"}
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text fontWeight={"bold"} fontSize={"xl"}>
+                27/08/2023
+              </Text>
+            </Box>
+            <Box
+              border={"1px solid #D8D8D8"}
+              rounded={"md"}
+              p={"0.4rem"}
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text fontWeight={"bold"} fontSize={"xl"}>
+                15:25
+              </Text>
+            </Box>
+          </Flex>
+
+          <Flex gap={5} width={"full"} my={"5px"}>
+            <Flex
+              alignItems={"center"}
+              gap={3}
+              border={"1px solid #D8D8D8"}
+              rounded={"md"}
+              p={"0.8rem"}
+            >
+              <Box
+                border={"2px solid #8E6930"}
+                background={"#FFCE83"}
+                rounded={"md"}
+                p={"0.5rem"}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <Icon as={GoPersonAdd} boxSize={"6"} color={"#8E6930"} />
+              </Box>
+              <Text>Register a Student</Text>
+            </Flex>
+
+            <Flex
+              alignItems={"center"}
+              gap={3}
+              border={"1px solid #D8D8D8"}
+              rounded={"md"}
+              p={"0.8rem"}
+            >
+              <Box
+                border={"2px solid #026361"}
+                background={"#95E2E2"}
+                rounded={"md"}
+                p={"0.5rem"}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <Icon as={CgFileAdd} boxSize={"6"} color={"#026361"} />
+              </Box>
+              <Text>Upload Attendance</Text>
+            </Flex>
+          </Flex>
+        </Box>
+
+        <Flex mt={"2rem"} gap={8} w={'full'}>
+          {/* Attendace section */}
+          <Box p={"1rem"} backgroundColor={"#fff"} rounded={"lg"} w={'full'}>
+            <Flex justifyContent={"space-between"}>
+              <Box display={"flex"} alignItems={"center"} gap={2}>
+                <Icon as={BsArchive} boxSize={"4"} color={"#E4B972"} />
+                <Text fontWeight={"600"} fontSize={"md"}>
+                  Today's Attendance
+                </Text>
+              </Box>
+              <Button
+                backgroundColor={"transparent"}
+                rounded={"md"}
+                border={"1px solid #E2E2E2"}
+                size={"md"}
+              >
+                <Text fontSize={"sm"} color={"#747474"}>
+                  See All
+                </Text>
+              </Button>
+            </Flex>
+
+            <Divider color={"#E2E2E2"} my={"0.8rem"} />
+
+            {/* Section for absent pupils */}
+            <Box>
+              <Text fontSize={"sm"} color={"#747474"}>
+                Absent
+              </Text>
+
+              {attendance.map((item) =>
+                item.present === false ? (
+                  <StudentAttendance attendance={item} key={item.id} />
+                ) : null
+              )}
+            </Box>
+
+            <Divider size={'10'}/>
+
+            {/* Section for present pupils */}
+            <Box>
+              <Text fontSize={"sm"} color={"#747474"} mt={'1rem'}>
+                Present
+              </Text>
+
+              {attendance.map((item) =>
+                item.present === true ? (
+                  <StudentAttendance attendance={item} key={item.id} />
+                ) : null
+              )}
+            </Box>
+          </Box>
+
+          {/* Events section */}
+          <Box p={"1rem"} backgroundColor={"#fff"} rounded={"lg"} w={"full"}>
+              <Box display={"flex"} alignItems={"center"} gap={2}>
+                <Icon as={MdDateRange} boxSize={"4"} color={"#E4B972"} />
+                <Text fontWeight={"600"} fontSize={"md"}>
+                  Events
+                </Text>
+              </Box>
+
+               <Divider color={"#E2E2E2"} my={"0.8rem"} />
+
+            <Box>
+              <Text fontSize={"sm"} color={"#747474"}>
+                Birthdays this week
+              </Text>
+              <Grid templateColumns={{base:'repeat(1, 1fr)', xl:"repeat(2, 1fr)"}} gap={4} mt={'0.5rem'}>
+              {
+                birthday.map((item) => {
+                  return(
+                    <BirthdayCard birthday={item} key={item.id}/>
+                  )
+                })
+              }
+              </Grid>
+            </Box>
+          </Box>
+        </Flex>
+      </Box>
+
+      <Box backgroundColor={"#F1F1F1"} height={"full"}>
+        <Box border={"1px solid #D8D8D8"} py={"2rem"} px={"1.5rem"}>
+          <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Text fontWeight={"bold"}>Documents</Text>
+            <Button
+              color={"#747474"}
+              border={"1px solid #E2E2E2"}
+              backgroundColor={"transparent"}
+            >
+              <AiOutlinePlus />
+              <Text fontWeight={"400"} mx={"0.3rem"} fontSize={"sm"}>
+                Create
+              </Text>
+            </Button>
+          </Flex>
+
+          <Box>
+            <Flex justifyContent={"space-between"} my={"1.5rem"}>
+              <Flex>
+                <Box
+                  backgroundColor={"#FCE4BE"}
+                  rounded={"sm"}
+                  mr={"0.5rem"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  px={"1rem"}
+                >
+                  <Icon as={CgFileDocument} fontSize={"20"} />
+                </Box>
+                <Grid
+                  justifyContent={"center"}
+                  alignContent={"space-between"}
+                  w={{ base: "full", md: "15rem" }}
+                >
+                  <Text fontSize={"sm"} fontWeight={"bold"}>
+                    Graycases
+                  </Text>
+                  <Text fontSize={"xs"}>
+                    Contains behavioral and disciplinary actions taken on the
+                    student
+                  </Text>
+                </Grid>
+              </Flex>
+              <Box
+                border={"0.1rem dashed #747474"}
+                w={{ base: "auto", md: "4.2rem" }}
+                rounded={"md"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                textAlign={"center"}
+                px={"0.6rem"}
+                gap={0}
+              >
+                <Text fontWeight={"bold"} fontSize={"xl"}>
+                  25
+                </Text>
+                <Text fontSize={"xs"} fontWeight={"bold"}>
+                  Cases
+                </Text>
+              </Box>
+            </Flex>
+
+            <Flex justifyContent={"space-between"} my={"1.5rem"}>
+              <Flex>
+                <Box
+                  backgroundColor={"#FCE4BE"}
+                  rounded={"sm"}
+                  mr={"0.5rem"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  px={"1rem"}
+                >
+                  <Icon as={HiOutlineDocumentText} fontSize={"20"} />
+                </Box>
+                <Grid
+                  justifyContent={"center"}
+                  alignContent={"space-between"}
+                  w={{ base: "full", md: "15rem" }}
+                >
+                  <Text fontSize={"sm"} fontWeight={"bold"}>
+                    Results
+                  </Text>
+                  <Text fontSize={"xs"}>
+                    Contains the academic grading of the student, after each
+                    term
+                  </Text>
+                </Grid>
+              </Flex>
+              <Box
+                border={"0.1rem dashed #747474"}
+                rounded={"md"}
+                w={{ base: "auto", md: "4.2rem" }}
+                justifyContent={"center"}
+                alignItems={"center"}
+                textAlign={"center"}
+                px={"0.6rem"}
+                gap={0}
+              >
+                <Text fontWeight={"bold"} fontSize={"xl"}>
+                  32
+                </Text>
+                <Text fontSize={"xs"} fontWeight={"bold"}>
+                  Results
+                </Text>
+              </Box>
+            </Flex>
+
+            <Flex justifyContent={"space-between"} my={"1.5rem"}>
+              <Flex>
+                <Box
+                  backgroundColor={"#FCE4BE"}
+                  rounded={"sm"}
+                  mr={"0.5rem"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  px={"1rem"}
+                >
+                  <Icon as={CgFileDocument} fontSize={"20"} />
+                </Box>
+                <Grid
+                  justifyContent={"center"}
+                  alignContent={"space-between"}
+                  w={{ base: "full", md: "15rem" }}
+                >
+                  <Text fontSize={"sm"} fontWeight={"bold"}>
+                    Notes
+                  </Text>
+                  <Text fontSize={"xs"}>
+                    Short text used to share information between the teachers
+                    and admin
+                  </Text>
+                </Grid>
+              </Flex>
+              <Box
+                border={"0.1rem dashed #747474"}
+                rounded={"md"}
+                w={{ base: "auto", md: "4.2rem" }}
+                justifyContent={"center"}
+                alignItems={"center"}
+                textAlign={"center"}
+                px={"0.6rem"}
+                gap={0}
+              >
+                <Text fontWeight={"bold"} fontSize={"xl"}>
+                  12
+                </Text>
+                <Text fontSize={"xs"} fontWeight={"bold"}>
+                  Notes
+                </Text>
+              </Box>
+            </Flex>
+          </Box>
+        </Box>
+
+        <Box>
+          <Box border={"1px solid #D8D8D8"} py={"2rem"} px={"1.5rem"}>
+            <Text fontWeight={"bold"}>Recent Actions</Text>
+
+            <Box>
+              <Flex
+                my={"1.5rem"}
+                border={"1px solid #E2E2E2"}
+                p={"0.5rem"}
+                gap={1}
+                rounded={'lg'}
+              >
+                <Avatar src="https://th.bing.com/th/id/R.ff77632115719e1d1c6acaa1d54745a9?rik=Tlt8JV3P6lD0Dw&pid=ImgRaw&r=0" />
+                <Box w={"full"}>
+                  <Flex
+                    justifyContent={"space-between"}
+                    width={"100%"}
+                    mb={"0.5rem"}
+                  >
+                    <Box>
+                      <Text fontWeight={"600"} fontSize={"sm"}>
+                        Tobiloba (David) Akeem
+                      </Text>
+                      <Text
+                        color={"#B1B1B1"}
+                        fontSize={"sm"}
+                        fontWeight={"500"}
+                      >
+                        GN230062
+                      </Text>
+                    </Box>
+                    <Box
+                      backgroundColor={"#FEC4C4"}
+                      h={"full"}
+                      px={"1.2rem"}
+                      py={"0.5rem"}
+                      rounded={"full"}
+                    >
+                      <Text
+                        fontSize={"sm"}
+                        color={"#C73131"}
+                        fontWeight={"600"}
+                      >
+                        Fees Default
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"}>
+                    <Text
+                      fontSize={"md"}
+                      fontWeight={"bold"}
+                      px={{ md: "0.5rem" }}
+                      py={{ md: "0.4rem" }}
+                    >
+                      Amount Owed: ₦125,500
+                    </Text>
+                  </Box>
+                </Box>
+              </Flex>
+
+              <Flex
+                my={"1.5rem"}
+                border={"1px solid #E2E2E2"}
+                p={"0.5rem"}
+                gap={1}
+                rounded={'lg'}
+              >
+                <Avatar src="https://images.pexels.com/photos/1858479/pexels-photo-1858479.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" />
+                <Box w={"full"}>
+                  <Flex
+                    justifyContent={"space-between"}
+                    width={"100%"}
+                    mb={"0.5rem"}
+                  >
+                    <Box>
+                      <Text fontWeight={"600"} fontSize={"sm"}>
+                        Chioma Olumuyiwa
+                      </Text>
+                      <Text
+                        color={"#B1B1B1"}
+                        fontSize={"sm"}
+                        fontWeight={"500"}
+                      >
+                        GN2300033
+                      </Text>
+                    </Box>
+                    <Box
+                      backgroundColor={"#FEC4C4"}
+                      h={"full"}
+                      px={"1.2rem"}
+                      py={"0.5rem"}
+                      rounded={"full"}
+                    >
+                      <Text
+                        fontSize={"sm"}
+                        color={"#C73131"}
+                        fontWeight={"600"}
+                      >
+                        Fees Default
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"}>
+                    <Text
+                      fontSize={"md"}
+                      fontWeight={"bold"}
+                      px={{ md: "0.5rem" }}
+                      py={{ md: "0.4rem" }}
+                    >
+                      Amount Owed: ₦35,000
+                    </Text>
+                  </Box>
+                </Box>
+              </Flex>
+
+              <Flex
+                my={"1.5rem"}
+                border={"1px solid #E2E2E2"}
+                p={"0.5rem"}
+                gap={1}
+                rounded={'lg'}
+              >
+                <Avatar src="https://daisybeattyphotography.com/wp-content/uploads/2016/10/31-3037-post/best-child-portrait-studio-nyc-daisy-beatty-684x1024.jpg" />
+                <Box w={"full"}>
+                  <Flex
+                    justifyContent={"space-between"}
+                    width={"100%"}
+                    mb={"0.5rem"}
+                  >
+                    <Box>
+                      <Text fontWeight={"600"} fontSize={"sm"}>
+                        Tobiloba (David) Akeem
+                      </Text>
+                      <Text
+                        color={"#B1B1B1"}
+                        fontSize={"sm"}
+                        fontWeight={"500"}
+                      >
+                        GN2300030
+                      </Text>
+                    </Box>
+                    <Box
+                      backgroundColor={"#FFD596"}
+                      h={"full"}
+                      px={"1.2rem"}
+                      py={"0.5rem"}
+                      rounded={"full"}
+                    >
+                      <Text
+                        fontSize={"sm"}
+                        color={"#AC7118"}
+                        fontWeight={"600"}
+                      >
+                        Suspension
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"}>
+                    <Text
+                      fontSize={"sm"}
+                      fontWeight={"500"}
+                      px={{ md: "0.5rem" }}
+                      py={{ md: "0.4rem" }}
+                    >
+                      Samuel was given 2 weeks suspensio...
+                    </Text>
+                  </Box>
+                </Box>
+              </Flex>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Flex>
+  );
+};
+
+export default Home;
