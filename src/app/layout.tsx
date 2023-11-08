@@ -6,7 +6,7 @@ import SidebarWithHeader from "@/components/SidebarNav";
 const mulish = Mulish({ subsets: ["cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Greynote Parents Dashboard",
+  title: "Greynote Teachers Dashboard",
   description: "",
 };
 
