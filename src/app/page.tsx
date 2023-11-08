@@ -96,6 +96,8 @@ const BirthdayCard: FC<BirthdayCardProps> = ({ birthday }) => {
       alignItems={"center"}
       w={"full"}
       p={"1rem"}
+      transition="box-shadow 0.4s ease"
+      _hover={{boxShadow:"md", backgroundColor:'#DFE8F443', pointer:'pointer', borderColor:'#FDBC5260'}}
     >
       <Avatar src={birthday.profileUrl} justifySelf={"center"} />
       <Text fontSize={"sm"} fontWeight={"bold"}>
@@ -255,7 +257,6 @@ const Home: FC<HomeProps> = ({}) => {
           <Flex
             gap={2}
             width={"full"}
-            my="5px"
             display={{ base: "column", lg: "flex" }}
           >
             <Box
@@ -264,9 +265,12 @@ const Home: FC<HomeProps> = ({}) => {
               p={"0.4rem"}
               display={"flex"}
               gap={2}
+              my={{base:"5px", md:'0px'}}
+              transition="box-shadow 0.4s ease"
+              _hover={{boxShadow:"md", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
             >
               <Box border={"1px solid #D8D8D8"} rounded={"md"} p={"0.4rem"}>
-                <Avatar src="https://th.bing.com/th/id/R.93210846f887818829a3eca4c7374fd1?rik=JwoqH6qfvHIDnA&pid=ImgRaw&r=0" />
+                <Avatar src="https://th.bing.com/th/id/R.93210846f887818829a3eca4c7374fd1?rik=JwoqH6qfvHIDnA&pid=ImgRaw&r=0" size={'sm'}/>
               </Box>
               <Box>
                 <Text fontWeight={"bold"} fontSize={"sm"}>
@@ -286,7 +290,9 @@ const Home: FC<HomeProps> = ({}) => {
               justifyContent={"center"}
               flexDir={"column"}
               alignItems={"center"}
-              my={{ base: "0", md: "0.5rem" }}
+              my={{base:"5px", md:'0px'}}
+              transition="box-shadow 0.4s ease"
+              _hover={{boxShadow:"md", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
             >
               <Text fontSize={"xl"} fontWeight={"bold"}>
                 32
@@ -302,7 +308,9 @@ const Home: FC<HomeProps> = ({}) => {
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
-              my={{ base: "0", md: "0.5rem" }}
+              my={{base:"5px", md:'0px'}}
+              transition="box-shadow 0.4s ease"
+              _hover={{boxShadow:"md", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
             >
               <Text fontWeight={"bold"} fontSize={"xl"} textAlign={"center"}>
                 27/08/2023
@@ -315,7 +323,9 @@ const Home: FC<HomeProps> = ({}) => {
               display={"flex"}
               alignItems={"center"}
               justifyContent={"center"}
-              my={{ base: "0", md: "0.5rem" }}
+              my={{base:"5px", md:'0px'}}
+              transition="box-shadow 0.4s ease"
+              _hover={{boxShadow:"sm", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
             >
               <Text fontWeight={"bold"} fontSize={"xl"}>
                 15:25
@@ -336,6 +346,8 @@ const Home: FC<HomeProps> = ({}) => {
               border={"1px solid #D8D8D8"}
               rounded={"md"}
               p={"0.8rem"}
+              transition="box-shadow 0.4s ease"
+              _hover={{boxShadow:"lg", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
             >
               <Box
                 border={"2px solid #8E6930"}
@@ -345,6 +357,8 @@ const Home: FC<HomeProps> = ({}) => {
                 display={"flex"}
                 justifyContent={"center"}
                 alignItems={"center"}
+                transition="box-shadow 0.4s ease"
+                _hover={{backgroundColor:"#fff", boxShadow:'lg'}}
               >
                 <Icon as={GoPersonAdd} boxSize={"6"} color={"#8E6930"} />
               </Box>
@@ -357,6 +371,8 @@ const Home: FC<HomeProps> = ({}) => {
               border={"1px solid #D8D8D8"}
               rounded={"md"}
               p={"0.8rem"}
+             transition="box-shadow 0.4s ease"
+                _hover={{backgroundColor:"#fff", boxShadow:'lg'}}
             >
               <Box
                 border={"2px solid #026361"}
