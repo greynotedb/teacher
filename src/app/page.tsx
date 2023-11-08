@@ -102,7 +102,7 @@ const BirthdayCard: FC<BirthdayCardProps> = ({ birthday }) => {
         {birthday.name}
       </Text>
       <Box>
-        <Flex alignItems={"flex-end"}>
+        <Flex justifyContent={'center'} alignItems={"center"}>
           <Text color={"#747474"} fontSize={"0.5rem"}>
             {birthday.regNo}
           </Text>
@@ -644,7 +644,7 @@ const Home: FC<HomeProps> = ({}) => {
                     mb={"0.5rem"}
                   >
                     <Box>
-                      <Text fontWeight={"600"} fontSize={"sm"}>
+                      <Text fontWeight={"600"} fontSize={"sm"} textOverflow={'ellipsis'}>
                         Tobiloba (David) Akeem
                       </Text>
                       <Text
@@ -655,7 +655,7 @@ const Home: FC<HomeProps> = ({}) => {
                         GN230062
                       </Text>
                     </Box>
-                    <Box
+                   <Box
                       backgroundColor={"#FEC4C4"}
                       h={"full"}
                       px={"1.2rem"}
@@ -671,12 +671,14 @@ const Home: FC<HomeProps> = ({}) => {
                       </Text>
                     </Box>
                   </Flex>
-                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"}>
+                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"} px={{ md: "0.5rem" }} py={{ md: "0.4rem" }}>
                     <Text
                       fontSize={"md"}
-                      fontWeight={"bold"}
-                      px={{ md: "0.5rem" }}
-                      py={{ md: "0.4rem" }}
+                      fontWeight={"500"}
+                      overflow={'hidden'}
+                      lineHeight={'short'}
+                      noOfLines={1}
+                      textOverflow={'ellipsis'}
                     >
                       Amount Owed: ₦125,500
                     </Text>
@@ -726,12 +728,14 @@ const Home: FC<HomeProps> = ({}) => {
                       </Text>
                     </Box>
                   </Flex>
-                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"}>
+                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"} px={{ md: "0.5rem" }} py={{ md: "0.4rem" }}>
                     <Text
                       fontSize={"md"}
-                      fontWeight={"bold"}
-                      px={{ md: "0.5rem" }}
-                      py={{ md: "0.4rem" }}
+                      fontWeight={"500"}
+                      overflow={'hidden'}
+                      lineHeight={'short'}
+                      noOfLines={1}
+                      textOverflow={'ellipsis'}
                     >
                       Amount Owed: ₦35,000
                     </Text>
@@ -781,14 +785,16 @@ const Home: FC<HomeProps> = ({}) => {
                       </Text>
                     </Box>
                   </Flex>
-                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"}>
+                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"} px={{ md: "0.5rem" }} py={{ md: "0.4rem" }}>
                     <Text
                       fontSize={"sm"}
                       fontWeight={"500"}
-                      px={{ md: "0.5rem" }}
-                      py={{ md: "0.4rem" }}
+                      overflow={'hidden'}
+                      lineHeight={'short'}
+                      noOfLines={1}
+                      textOverflow={'ellipsis'}
                     >
-                      Samuel was given 2 weeks suspensio...
+                      Samuel was given 2 weeks suspension and all i want for 
                     </Text>
                   </Box>
                 </Box>
