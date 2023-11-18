@@ -1,6 +1,7 @@
 "use client";
-
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Box,
   Flex,
@@ -10,15 +11,19 @@ import {
   Grid,
   Avatar,
   Divider,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from "@chakra-ui/react";
-import { HiOutlineDocumentText } from "react-icons/hi";
+import { HiOutlineDocumentText, HiOutlineHome } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { CgFileDocument, CgFileAdd } from "react-icons/cg";
 import { GoPersonAdd } from "react-icons/go";
-import { BsArchive, BsDot, BsDashCircle } from "react-icons/bs";
+import { BsArchive, BsDot } from "react-icons/bs";
 import { PrimaryBadge } from "@/components/shared/Badge";
 import { SecondaryBadge } from "@/components/shared/Badge";
 import { MdDateRange } from "react-icons/md";
+import { BiChevronRight } from "react-icons/bi";
 
 interface HomeProps {
   attendance: [
@@ -97,14 +102,19 @@ const BirthdayCard: FC<BirthdayCardProps> = ({ birthday }) => {
       w={"full"}
       p={"1rem"}
       transition="box-shadow 0.4s ease"
-      _hover={{boxShadow:"md", backgroundColor:'#DFE8F443', pointer:'pointer', borderColor:'#FDBC5260'}}
+      _hover={{
+        boxShadow: "md",
+        backgroundColor: "#DFE8F443",
+        pointer: "pointer",
+        borderColor: "#FDBC5260",
+      }}
     >
       <Avatar src={birthday.profileUrl} justifySelf={"center"} />
       <Text fontSize={"sm"} fontWeight={"bold"}>
         {birthday.name}
       </Text>
       <Box>
-        <Flex justifyContent={'center'} alignItems={"center"}>
+        <Flex justifyContent={"center"} alignItems={"center"}>
           <Text color={"#747474"} fontSize={"0.5rem"}>
             {birthday.regNo}
           </Text>
@@ -124,6 +134,24 @@ const BirthdayCard: FC<BirthdayCardProps> = ({ birthday }) => {
 };
 
 const Home: FC<HomeProps> = ({}) => {
+  const [active, setActive] = useState("");
+  const pathName = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (pathName.includes("/graycases")) {
+      setActive("graycases");
+    } else if (pathName.includes("/myclassroom")) {
+      setActive("myclassroom");
+    } else if (pathName.includes("/mynotes")) {
+      setActive("mynotes");
+    } else if (pathName.includes("/requests")) {
+      setActive("requests");
+    } else {
+      setActive("Dashboard");
+    }
+  }, [pathName]);
+
   const birthday = [
     {
       id: 1,
@@ -242,6 +270,36 @@ const Home: FC<HomeProps> = ({}) => {
   return (
     <Flex w={"full"} h={"full"} display={"flex"}>
       <Box backgroundColor={"#FFF5E6"} height={"full"} width={"full"} p={5}>
+        <Box my={"1rem"} display={"flex"} justifyContent={"flex-end"}>
+          <Breadcrumb
+            spacing="4px"
+            separator={<BiChevronRight color="gray.500" />}
+          >
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                href="#"
+                fontSize={"sm"}
+                fontWeight={"600"}
+                display={"flex"}
+                alignItems={"center"}
+              >
+                <HiOutlineHome color="#E4B972" />
+                <Text ml={"5px"}>Home</Text>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink
+                href={"/"}
+                fontSize={"sm"}
+                fontWeight={"bold"}
+                color={"#E4B972"}
+              >
+                {active}
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        </Box>
         <Box
           bgImage={"/images/bgImg.png"}
           p={"0.8rem"}
@@ -254,23 +312,27 @@ const Home: FC<HomeProps> = ({}) => {
           backgroundPosition="bottom right"
           backgroundColor={"#fff"}
         >
-          <Flex
-            gap={2}
-            width={"full"}
-            display={{ base: "column", lg: "flex" }}
-          >
+          <Flex gap={2} width={"full"} display={{ base: "column", lg: "flex" }}>
             <Box
               border={"1px solid #D8D8D8"}
               rounded={"md"}
               p={"0.4rem"}
               display={"flex"}
               gap={2}
-              my={{base:"5px", md:'0px'}}
+              my={{ base: "5px", lg: "0px" }}
               transition="box-shadow 0.4s ease"
-              _hover={{boxShadow:"md", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
+              _hover={{
+                boxShadow: "md",
+                backgroundColor: "#fff",
+                pointer: "pointer",
+                borderColor: "gray.200",
+              }}
             >
               <Box border={"1px solid #D8D8D8"} rounded={"md"} p={"0.4rem"}>
-                <Avatar src="https://th.bing.com/th/id/R.93210846f887818829a3eca4c7374fd1?rik=JwoqH6qfvHIDnA&pid=ImgRaw&r=0" size={'sm'}/>
+                <Avatar
+                  src="https://th.bing.com/th/id/R.93210846f887818829a3eca4c7374fd1?rik=JwoqH6qfvHIDnA&pid=ImgRaw&r=0"
+                  size={"sm"}
+                />
               </Box>
               <Box>
                 <Text fontWeight={"bold"} fontSize={"sm"}>
@@ -290,9 +352,14 @@ const Home: FC<HomeProps> = ({}) => {
               justifyContent={"center"}
               flexDir={"column"}
               alignItems={"center"}
-              my={{base:"5px", md:'0px'}}
+              my={{ base: "5px", lg: "0px" }}
               transition="box-shadow 0.4s ease"
-              _hover={{boxShadow:"md", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
+              _hover={{
+                boxShadow: "md",
+                backgroundColor: "#fff",
+                pointer: "pointer",
+                borderColor: "gray.200",
+              }}
             >
               <Text fontSize={"xl"} fontWeight={"bold"}>
                 32
@@ -308,9 +375,14 @@ const Home: FC<HomeProps> = ({}) => {
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
-              my={{base:"5px", md:'0px'}}
+              my={{ base: "5px", lg: "0px" }}
               transition="box-shadow 0.4s ease"
-              _hover={{boxShadow:"md", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
+              _hover={{
+                boxShadow: "md",
+                backgroundColor: "#fff",
+                pointer: "pointer",
+                borderColor: "gray.200",
+              }}
             >
               <Text fontWeight={"bold"} fontSize={"xl"} textAlign={"center"}>
                 27/08/2023
@@ -321,11 +393,16 @@ const Home: FC<HomeProps> = ({}) => {
               rounded={"md"}
               p={"0.4rem"}
               display={"flex"}
-              alignItems={"center"}
               justifyContent={"center"}
-              my={{base:"5px", md:'0px'}}
+              alignItems={"center"}
+              my={{ base: "5px", lg: "0px" }}
               transition="box-shadow 0.4s ease"
-              _hover={{boxShadow:"sm", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
+              _hover={{
+                boxShadow: "md",
+                backgroundColor: "#fff",
+                pointer: "pointer",
+                borderColor: "gray.200",
+              }}
             >
               <Text fontWeight={"bold"} fontSize={"xl"}>
                 15:25
@@ -347,7 +424,12 @@ const Home: FC<HomeProps> = ({}) => {
               rounded={"md"}
               p={"0.8rem"}
               transition="box-shadow 0.4s ease"
-              _hover={{boxShadow:"lg", backgroundColor:'#fff', pointer:'pointer', borderColor:'gray.200'}}
+              _hover={{
+                boxShadow: "lg",
+                backgroundColor: "#fff",
+                pointer: "pointer",
+                borderColor: "gray.200",
+              }}
             >
               <Box
                 border={"2px solid #8E6930"}
@@ -358,7 +440,7 @@ const Home: FC<HomeProps> = ({}) => {
                 justifyContent={"center"}
                 alignItems={"center"}
                 transition="box-shadow 0.4s ease"
-                _hover={{backgroundColor:"#fff", boxShadow:'lg'}}
+                _hover={{ backgroundColor: "#fff", boxShadow: "lg" }}
               >
                 <Icon as={GoPersonAdd} boxSize={"6"} color={"#8E6930"} />
               </Box>
@@ -371,8 +453,8 @@ const Home: FC<HomeProps> = ({}) => {
               border={"1px solid #D8D8D8"}
               rounded={"md"}
               p={"0.8rem"}
-             transition="box-shadow 0.4s ease"
-                _hover={{backgroundColor:"#fff", boxShadow:'lg'}}
+              transition="box-shadow 0.4s ease"
+              _hover={{ backgroundColor: "#fff", boxShadow: "lg" }}
             >
               <Box
                 border={"2px solid #026361"}
@@ -482,7 +564,7 @@ const Home: FC<HomeProps> = ({}) => {
       </Box>
 
       <Box backgroundColor={"#F1F1F1"} height={"full"}>
-        <Box border={"1px solid #D8D8D8"} py={"2rem"} px={"1.5rem"}>
+        <Box border={"1px solid #D8D8D8"} py={"1rem"} px={"1rem"}>
           <Flex justifyContent={"space-between"} alignItems={"center"}>
             <Text fontWeight={"bold"}>Documents</Text>
             <Button
@@ -498,7 +580,10 @@ const Home: FC<HomeProps> = ({}) => {
           </Flex>
 
           <Box>
-            <Flex justifyContent={"space-between"} my={"1.5rem"}>
+            <Flex
+              justifyContent={"space-between"}
+              my={"1.5rem"}
+            >
               <Flex>
                 <Box
                   backgroundColor={"#FCE4BE"}
@@ -543,7 +628,10 @@ const Home: FC<HomeProps> = ({}) => {
               </Box>
             </Flex>
 
-            <Flex justifyContent={"space-between"} my={"1.5rem"}>
+            <Flex
+              justifyContent={"space-between"}
+              my={"1.5rem"}
+            >
               <Flex>
                 <Box
                   backgroundColor={"#FCE4BE"}
@@ -588,7 +676,10 @@ const Home: FC<HomeProps> = ({}) => {
               </Box>
             </Flex>
 
-            <Flex justifyContent={"space-between"} my={"1.5rem"}>
+            <Flex
+              justifyContent={"space-between"}
+              my={"1.5rem"}
+            >
               <Flex>
                 <Box
                   backgroundColor={"#FCE4BE"}
@@ -651,6 +742,7 @@ const Home: FC<HomeProps> = ({}) => {
                 p={"0.5rem"}
                 gap={1}
                 rounded={"lg"}
+                _hover={{ backgroundColor: "#EADECA", transition: "0.5s" }}
               >
                 <Avatar src="https://th.bing.com/th/id/R.ff77632115719e1d1c6acaa1d54745a9?rik=Tlt8JV3P6lD0Dw&pid=ImgRaw&r=0" />
                 <Box w={"full"}>
@@ -660,7 +752,11 @@ const Home: FC<HomeProps> = ({}) => {
                     mb={"0.5rem"}
                   >
                     <Box>
-                      <Text fontWeight={"600"} fontSize={"sm"} textOverflow={'ellipsis'}>
+                      <Text
+                        fontWeight={"600"}
+                        fontSize={"sm"}
+                        textOverflow={"ellipsis"}
+                      >
                         Tobiloba (David) Akeem
                       </Text>
                       <Text
@@ -671,7 +767,7 @@ const Home: FC<HomeProps> = ({}) => {
                         GN230062
                       </Text>
                     </Box>
-                   <Box
+                    <Box
                       backgroundColor={"#FEC4C4"}
                       h={"full"}
                       px={"1.2rem"}
@@ -687,14 +783,20 @@ const Home: FC<HomeProps> = ({}) => {
                       </Text>
                     </Box>
                   </Flex>
-                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"} px={{ md: "0.5rem" }} py={{ md: "0.4rem" }}>
+                  <Box
+                    backgroundColor={"#fff"}
+                    width={"full"}
+                    rounded={"md"}
+                    px={{ md: "0.5rem" }}
+                    py={{ md: "0.4rem" }}
+                  >
                     <Text
                       fontSize={"md"}
                       fontWeight={"500"}
-                      overflow={'hidden'}
-                      lineHeight={'short'}
+                      overflow={"hidden"}
+                      lineHeight={"short"}
                       noOfLines={1}
-                      textOverflow={'ellipsis'}
+                      textOverflow={"ellipsis"}
                     >
                       Amount Owed: ₦125,500
                     </Text>
@@ -708,6 +810,7 @@ const Home: FC<HomeProps> = ({}) => {
                 p={"0.5rem"}
                 gap={1}
                 rounded={"lg"}
+                _hover={{ backgroundColor: "#EADECA", transition: "0.5s" }}
               >
                 <Avatar src="https://images.pexels.com/photos/1858479/pexels-photo-1858479.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" />
                 <Box w={"full"}>
@@ -744,14 +847,20 @@ const Home: FC<HomeProps> = ({}) => {
                       </Text>
                     </Box>
                   </Flex>
-                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"} px={{ md: "0.5rem" }} py={{ md: "0.4rem" }}>
+                  <Box
+                    backgroundColor={"#fff"}
+                    width={"full"}
+                    rounded={"md"}
+                    px={{ md: "0.5rem" }}
+                    py={{ md: "0.4rem" }}
+                  >
                     <Text
                       fontSize={"md"}
                       fontWeight={"500"}
-                      overflow={'hidden'}
-                      lineHeight={'short'}
+                      overflow={"hidden"}
+                      lineHeight={"short"}
                       noOfLines={1}
-                      textOverflow={'ellipsis'}
+                      textOverflow={"ellipsis"}
                     >
                       Amount Owed: ₦35,000
                     </Text>
@@ -765,6 +874,7 @@ const Home: FC<HomeProps> = ({}) => {
                 p={"0.5rem"}
                 gap={1}
                 rounded={"lg"}
+                _hover={{ backgroundColor: "#EADECA", transition: "0.5s" }}
               >
                 <Avatar src="https://daisybeattyphotography.com/wp-content/uploads/2016/10/31-3037-post/best-child-portrait-studio-nyc-daisy-beatty-684x1024.jpg" />
                 <Box w={"full"}>
@@ -801,16 +911,22 @@ const Home: FC<HomeProps> = ({}) => {
                       </Text>
                     </Box>
                   </Flex>
-                  <Box backgroundColor={"#fff"} width={"full"} rounded={"md"} px={{ md: "0.5rem" }} py={{ md: "0.4rem" }}>
+                  <Box
+                    backgroundColor={"#fff"}
+                    width={"full"}
+                    rounded={"md"}
+                    px={{ md: "0.5rem" }}
+                    py={{ md: "0.4rem" }}
+                  >
                     <Text
                       fontSize={"sm"}
                       fontWeight={"500"}
-                      overflow={'hidden'}
-                      lineHeight={'short'}
+                      overflow={"hidden"}
+                      lineHeight={"short"}
                       noOfLines={1}
-                      textOverflow={'ellipsis'}
+                      textOverflow={"ellipsis"}
                     >
-                      Samuel was given 2 weeks suspension and all i want for 
+                      Samuel was given 2 weeks suspension and all i want for
                     </Text>
                   </Box>
                 </Box>

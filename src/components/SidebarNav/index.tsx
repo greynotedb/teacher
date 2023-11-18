@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   IconButton,
   Avatar,
