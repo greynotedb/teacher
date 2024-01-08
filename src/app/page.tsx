@@ -268,7 +268,7 @@ const Home: FC<HomeProps> = ({}) => {
     },
   ];
   return (
-    <Flex w={"full"} h={"full"} display={"flex"}>
+    <Flex w={"full"} h={"full"} flexDir={{base:"column", md:"row"}}>
       <Box backgroundColor={"#FFF5E6"} height={"full"} width={"full"} p={5}>
         <Box my={"1rem"} display={"flex"} justifyContent={"flex-end"}>
           <Breadcrumb
